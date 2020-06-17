@@ -6,4 +6,6 @@ async function promiseFunc() {
 
 promiseFunc().then(console.log);
 
+$('.container').addClass('asd');
+
 console.log('Test Webpack Clean plugin');

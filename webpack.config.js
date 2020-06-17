@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -39,6 +40,9 @@ module.exports = {
         filename: filename('js'),
         path: path.resolve(__dirname, 'dist')
     },
+    externals: {
+        jquery: 'jQuery'
+    },
     plugins: [
         new HTMLWebpackPlugin({
             template: './index.html',
@@ -53,16 +57,27 @@ module.exports = {
                     context: path.resolve(__dirname, 'src'),
                     from: 'favicon/**/*.*',
                     to: '[path][name].[ext]',
+                },
+                {
+                    context: path.resolve(__dirname, 'src'),
+                    from: 'modules/**/*.*',
+                    to: '[path][name].[ext]'
                 }
             ],
         }),
         new MiniCssExtractPlugin({
             filename: filename('css')
         }),
+        /*new webpack.ProvidePlugin({
+            $: 'jquery',
+            jQuery: 'jquery'
+        })*/
     ],
     devServer: {
         port: 4000,
+        overlay: true
     },
+    devtool: isDev ? 'source-map' : '',
     optimization: optimization(),
     module: {
         rules: [
@@ -131,8 +146,8 @@ module.exports = {
                     loader: 'babel-loader',
                     options: {
                         presets: [
-                            '@babel/preset-env'
-                        ]
+                            '@babel/preset-env',
+                        ],
                     }
                 }
             }
