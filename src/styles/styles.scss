@@ -1,0 +1,37 @@
+// system
+@import "./system/mixins";
+@import "./system/vars";
+@import "./system/fonts";
+@import "./system/libs";
+@import "./system/default";
+@import "./system/helpers";
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+.container {
+  max-width: 100%;
+  width: 1320px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.logo {
+  background-image: url('../img/logo/webpack-logo.png');
+  background-repeat: no-repeat;
+  background-position: 50%;
+  width: 400px;
+  height: 400px;
+  background-size: contain;
+  margin-left: auto;
+  margin-right: auto;
+}

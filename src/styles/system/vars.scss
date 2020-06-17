@@ -1,0 +1,36 @@
+//===fonts
+$base_fs: 16px;
+$base_lh: 1;
+$base_font: Arial, sans-serif;
+$accent_font: 'Roboto', $base_font;
+
+//===colors========================
+$white: #ffffff;
+$black: #000000;
+
+$error: #eb5757;
+$succes: #27ae60;
+
+//===container=====================
+$body_max_width: 1920px;
+$gutter: 10px;
+
+//===breaks========================
+$breaks: (
+    desktop: 1600px,
+    laptop: 1366px,
+    tablet_lg: 1280px,
+    tablet: 1024px,
+    tablet_sm: 960px,
+    mobile: 767px,
+    mobile_md: 640px,
+    mobile_sm: 480px,
+    mobile_xm: 320px,
+);
+
+//===container-width========================
+$container: (
+    desktop: 1460px,
+    tablet: 798px,
+    mobile: 100%,
+);
