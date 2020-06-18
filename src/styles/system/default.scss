@@ -27,7 +27,6 @@ body {
 }
 
 .page {
-
     &__wrapper {
         width: 100%;
         max-width: $body_max_width;
@@ -45,9 +44,11 @@ body {
         }
     }
 
-    &__main {}
+    &__main {
+    }
 
-    &__footer {}
+    &__footer {
+    }
 }
 
 .container {

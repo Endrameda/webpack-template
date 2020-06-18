@@ -7,6 +7,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
 const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
 const NodeSassGlobImporter = require('node-sass-glob-importer');
+const StyleLintWebpackPlugin = require('stylelint-webpack-plugin');
 
 const isDev = process.env.NODE_ENV === 'development';
 const isProd = !isDev;
@@ -56,6 +57,7 @@ const initPlugins = () => {
         new MiniCssExtractPlugin({
             filename: filename('css')
         }),
+        new StyleLintWebpackPlugin(),
         /*new webpack.ProvidePlugin({
             $: 'jquery',
             jQuery: 'jquery'

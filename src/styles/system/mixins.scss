@@ -2,23 +2,48 @@
     $index: str-index($string, $search);
 
     @if $index {
-        @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+        @return str-slice($string, 1, $index - 1) + $replace +
+            str-replace(
+                str-slice($string, $index + str-length($search)),
+                $search,
+                $replace
+            );
     }
 
     @return $string;
 }
 
-@mixin font-face($name, $path, $weight: null, $style: null, $exts: eot woff2 woff ttf svg) {
+@mixin font-face(
+    $name,
+    $path,
+    $weight: null,
+    $style: null,
+    $exts: eot woff2 woff ttf svg
+) {
     $src: null;
 
-    $extmods: (eot: '?', svg: '#'+ str-replace($name, ' ', '_'));
+    $extmods: (
+        eot: '?',
+        svg: '#' + str-replace($name, ' ', '_'),
+    );
 
-    $formats: (otf: 'opentype', ttf: 'truetype');
+    $formats: (
+        otf: 'opentype',
+        ttf: 'truetype',
+    );
 
     @each $ext in $exts {
-        $extmod: if(map-has-key($extmods, $ext), $ext + map-get($extmods, $ext), $ext);
+        $extmod: if(
+            map-has-key($extmods, $ext),
+            $ext + map-get($extmods, $ext),
+            $ext
+        );
         $format: if(map-has-key($formats, $ext), map-get($formats, $ext), $ext);
-        $src: append($src, url(quote($path + '.' + $extmod)) format(quote($format)), comma);
+        $src: append(
+            $src,
+            url(quote($path + '.' + $extmod)) format(quote($format)),
+            comma
+        );
     }
 
     @font-face {
@@ -29,7 +54,6 @@
         font-display: swap;
     }
 }
-
 
 @mixin placeholder {
     &::-webkit-input-placeholder {
@@ -47,15 +71,15 @@
 }
 
 @function svg($svg, $fill: null) {
-    $svg: if($fill, str-replace($svg, "<svg", "<svg fill='#{$fill}'"), $svg);
+    $svg: if($fill, str-replace($svg, '<svg', "<svg fill='#{$fill}'"), $svg);
     /* 
     $svg: str-replace($svg, "<svg", "<svg xmlns='http://www.w3.org/2000/svg' ");
     */
-    $svg: str-replace($svg, "<", "%3C");
-    $svg: str-replace($svg, ">", "%3E");
-    $svg: str-replace($svg, "\"", "'");
-    $svg: str-replace($svg, "#", "%23");
-    $svg: str-replace($svg, "&", "%26");
+    $svg: str-replace($svg, '<', '%3C');
+    $svg: str-replace($svg, '>', '%3E');
+    $svg: str-replace($svg, '"', "'");
+    $svg: str-replace($svg, '#', '%23');
+    $svg: str-replace($svg, '&', '%26');
 
-    @return url("data:image/svg+xml,#{$svg}");
+    @return url('data:image/svg+xml,#{$svg}');
 }

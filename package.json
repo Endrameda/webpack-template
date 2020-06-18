@@ -8,7 +8,8 @@
     "build": "cross-env NODE_ENV=production webpack --mode production",
     "watch": "cross-env NODE_ENV=development webpack --mode development --watch",
     "start": "cross-env NODE_ENV=development webpack-dev-server --hot --mode development --open",
-    "eslintFix": "eslint \"src/js/**/*.js\" --fix"
+    "eslint": "eslint \"src/js/**/*.js\" --fix",
+    "stylelint": "stylelint \"src/styles/**/*.scss\" --fix"
   },
   "repository": {
     "type": "git",
@@ -54,6 +55,8 @@
     "sass-loader": "^8.0.2",
     "style-loader": "^1.2.1",
     "stylelint": "^13.6.1",
+    "stylelint-config-prettier": "^8.0.1",
+    "stylelint-prettier": "^1.1.2",
     "stylelint-webpack-plugin": "^2.1.0",
     "terser-webpack-plugin": "^3.0.5",
     "webpack": "^4.43.0",
