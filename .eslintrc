@@ -1,0 +1,17 @@
+{
+  "root": true,
+  "parser": "babel-eslint",
+  "rules": {
+     "no-unused-vars": "warn"
+  },
+  "env": {
+    "es6": true,
+    "browser": true,
+    "commonjs": true,
+    "node": true,
+    "jquery": true
+  },
+  "extends": [
+    "plugin:prettier/recommended"
+  ]
+}

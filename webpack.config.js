@@ -30,20 +30,8 @@ const optimization = () => {
 
 const filename = ext => isDev ? `[name].${ext}` : `[name].[hash].${ext}`;
 
-module.exports = {
-    context: path.resolve(__dirname, 'src'),
-    mode: 'development',
-    entry: {
-        app: ['@babel/polyfill', './js/app.js'],
-    },
-    output: {
-        filename: filename('js'),
-        path: path.resolve(__dirname, 'dist')
-    },
-    externals: {
-        jquery: 'jQuery'
-    },
-    plugins: [
+const initPlugins = () => {
+    const plugins = [
         new HTMLWebpackPlugin({
             template: './index.html',
             minify: {
@@ -72,7 +60,104 @@ module.exports = {
             $: 'jquery',
             jQuery: 'jquery'
         })*/
-    ],
+    ]
+
+    return plugins;
+}
+
+const moduleRules = () => {
+    const rules = [
+        {
+            test: /\.css$/,
+            use: [
+                {
+                    loader: MiniCssExtractPlugin.loader,
+                    options: {
+                        reloadAll: true,
+                    },
+                },
+                'css-loader'
+            ]
+        },
+        {
+            test: /\.s[ac]ss$/,
+            use: [
+                {
+                    loader: MiniCssExtractPlugin.loader,
+                    options: {
+                        reloadAll: true,
+                    },
+                },
+                'css-loader',
+                {
+                    loader: 'sass-loader',
+                    options: {
+                        sassOptions: {
+                            importer: NodeSassGlobImporter(),
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            test: /\.(png|jpg|svg|gif)$/,
+            loader: 'file-loader',
+            options: {
+                name: '[path][name].[ext]',
+            }
+        },
+        {
+            test: /\.(ttf|woff|woff2|eot)$/,
+            loader: 'file-loader',
+            options: {
+                name: '[path][name].[ext]',
+            }
+        },
+        {
+            test: /\.xml$/,
+            use: [
+                'xml-loader',
+            ]
+        },
+        {
+            test: /\.(csv|tsv)$/,
+            use: [
+                'csv-loader',
+            ]
+        },
+        {
+            test: /\.js$/,
+            exclude: /node_modules/,
+            use: [
+                {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: [
+                            '@babel/preset-env',
+                        ],
+                    },
+                },
+                'eslint-loader'
+            ]
+        }
+    ]
+
+    return rules;
+}
+
+module.exports = {
+    context: path.resolve(__dirname, 'src'),
+    entry: {
+        app: ['@babel/polyfill', './js/app.js'],
+    },
+    output: {
+        filename: filename('js'),
+        path: path.resolve(__dirname, 'dist')
+    },
+    plugins: initPlugins(),
+    externals: {
+        jquery: 'jQuery'
+    },
     devServer: {
         port: 4000,
         overlay: true
@@ -80,77 +165,6 @@ module.exports = {
     devtool: isDev ? 'source-map' : '',
     optimization: optimization(),
     module: {
-        rules: [
-            {
-                test: /\.css$/,
-                use: [
-                    {
-                        loader: MiniCssExtractPlugin.loader,
-                        options: {
-                            reloadAll: true,
-                        },
-                    },
-                    'css-loader'
-                ]
-            },
-            {
-                test: /\.s[ac]ss$/,
-                use: [
-                    {
-                        loader: MiniCssExtractPlugin.loader,
-                        options: {
-                            reloadAll: true,
-                        },
-                    },
-                    'css-loader',
-                    {
-                        loader: 'sass-loader',
-                        options: {
-                            sassOptions: {
-                                importer: NodeSassGlobImporter(),
-                            }
-                        }
-                    }
-                ]
-            },
-            {
-                test: /\.(png|jpg|svg|gif)$/,
-                loader: 'file-loader',
-                options: {
-                    name: '[path][name].[ext]',
-                }
-            },
-            {
-                test: /\.(ttf|woff|woff2|eot)$/,
-                loader: 'file-loader',
-                options: {
-                    name: '[path][name].[ext]',
-                }
-            },
-            {
-                test: /\.xml$/,
-                use: [
-                    'xml-loader',
-                ]
-            },
-            {
-                test: /\.(csv|tsv)$/,
-                use: [
-                    'csv-loader',
-                ]
-            },
-            {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                loader: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: [
-                            '@babel/preset-env',
-                        ],
-                    }
-                }
-            }
-        ]
+        rules: moduleRules(),
     }
 }
