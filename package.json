@@ -4,12 +4,12 @@
   "description": "Webpack",
   "main": "index.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack --mode development",
     "build": "cross-env NODE_ENV=production webpack --mode production",
+    "dev": "cross-env NODE_ENV=development webpack --mode development",
     "start": "cross-env NODE_ENV=development webpack-dev-server --hot --mode development --open",
+    "stats": "webpack --json > stats.json && webpack-bundle-analyzer stats.json",
     "eslint": "eslint \"src/js/**/*.js\" --fix",
-    "stylelint": "stylelint \"src/styles/**/*.scss\" --fix",
-    "stats": "webpack --json > stats.json && webpack-bundle-analyzer stats.json"
+    "stylelint": "stylelint \"src/styles/**/*.scss\" --fix"
   },
   "repository": {
     "type": "git",
