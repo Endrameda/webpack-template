@@ -1,6 +1,6 @@
 dist
 node_modules
-
+stats.json
 
 .idea
 .vscode

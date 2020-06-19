@@ -58,10 +58,10 @@ const initPlugins = () => {
             filename: filename('css')
         }),
         new StyleLintWebpackPlugin(),
-        /*new webpack.ProvidePlugin({
+        new webpack.ProvidePlugin({
             $: 'jquery',
             jQuery: 'jquery'
-        })*/
+        })
     ]
 
     return plugins;
@@ -78,11 +78,23 @@ const moduleRules = () => {
                         reloadAll: true,
                     },
                 },
-                'css-loader'
+                {
+                    loader: 'css-loader',
+                    options: {
+                        sourceMap: true,
+                    }
+                },
+                {
+                    loader: 'postcss-loader',
+                    options: {
+                        sourceMap: true,
+                    }
+                }
             ]
         },
         {
             test: /\.s[ac]ss$/,
+            exclude: /\.\/src\/modules/,
             use: [
                 {
                     loader: MiniCssExtractPlugin.loader,
@@ -90,15 +102,27 @@ const moduleRules = () => {
                         reloadAll: true,
                     },
                 },
-                'css-loader',
+                {
+                    loader: 'css-loader',
+                    options: {
+                        sourceMap: true,
+                    }
+                },
+                {
+                    loader: 'postcss-loader',
+                    options: {
+                        sourceMap: true,
+                    }
+                },
                 {
                     loader: 'sass-loader',
                     options: {
                         sassOptions: {
                             importer: NodeSassGlobImporter(),
-                        }
+                        },
+                        sourceMap: true,
                     }
-                }
+                },
             ]
         },
         {
@@ -157,9 +181,9 @@ module.exports = {
         path: path.resolve(__dirname, 'dist')
     },
     plugins: initPlugins(),
-    externals: {
+    /*externals: {
         jquery: 'jQuery'
-    },
+    },*/
     devServer: {
         port: 4000,
         overlay: true

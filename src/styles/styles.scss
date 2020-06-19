@@ -18,11 +18,19 @@ body {
     padding-left: 10px;
     padding-right: 10px;
     margin: 0 auto;
+
+    @media all and (max-width: 960px) {
+        display: none;
+    }
 }
 
 h1 {
     text-align: center;
     margin: 20px 0;
+
+    @media all and (max-width: 960px) {
+        display: none;
+    }
 }
 
 .logo {
@@ -34,4 +42,8 @@ h1 {
     background-size: contain;
     margin-left: auto;
     margin-right: auto;
+
+    @media all and (max-width: 960px) {
+        display: none;
+    }
 }
