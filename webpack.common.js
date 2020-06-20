@@ -174,6 +174,7 @@ const baseConfig = {
                         loader: MiniCssExtractPlugin.loader,
                         options: {
                             reloadAll: true,
+                            publicPath: '../../'
                         },
                     },
                     {
@@ -250,7 +251,6 @@ const baseConfig = {
 const devConfig = {
     plugins: [
         new MiniCssExtractPlugin({
-            path: path.resolve(__dirname, `${settings.paths.dist}`),
             filename: `${settings.paths.assets.css}/[name].css`,
         }),
         new HTMLWebpackPlugin({
@@ -266,7 +266,6 @@ const devConfig = {
 const buildConfig = {
     plugins: [
         new MiniCssExtractPlugin({
-            path: path.resolve(__dirname, `${settings.paths.assets.css}`),
             filename: `${settings.paths.assets.css}/[name].[hash].css`,
         }),
         new HTMLWebpackPlugin({
