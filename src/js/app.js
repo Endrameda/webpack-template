@@ -1,5 +1,3 @@
-import '../styles/styles.scss';
-
 async function promiseFunc() {
     return await Promise.resolve('async is working');
 }

@@ -10,18 +10,13 @@ const CommonWebpackConfig = require('./webpack.common');
 
 module.exports = MergeWebpack(CommonWebpackConfig.devConfig, {
     mode: 'development',
-    context: path.resolve(__dirname, settings.paths.src.base),
-    entry: {
-        app: ['@babel/polyfill', './js/app.js'],
-    },
     output: {
-        filename: `${settings.paths.assets.js}/[name].js`,
-        path: path.resolve(__dirname, settings.paths.dist),
+        filename: `${settings.paths.dist.js}/[name].js`,
     },
     devServer: {
         port: 4000,
         overlay: true,
-        contentBase: path.resolve(__dirname, settings.paths.dist),
+        hot: true
     },
     devtool: 'source-map',
 })

@@ -6,6 +6,12 @@
 @import './system/default';
 @import './system/helpers';
 
+// base
+@import './base/**.scss';
+
+// components
+@import './components/**.*';
+
 body {
     margin: 0;
     padding: 0;
@@ -46,4 +52,8 @@ h1 {
     @media all and (max-width: 960px) {
         display: none;
     }
+}
+
+img {
+    margin: 0 auto;
 }

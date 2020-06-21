@@ -1,3 +1,4 @@
 dist
 node_modules
 src/modules
+src/scss/system/fonts.scss

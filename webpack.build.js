@@ -12,13 +12,8 @@ const CommonWebpackConfig = require('./webpack.common');
 
 module.exports = MergeWebpack(CommonWebpackConfig.buildConfig, {
     mode: 'production',
-    context: path.resolve(__dirname, settings.paths.src.base),
-    entry: {
-        app: ['@babel/polyfill', './js/app.js'],
-    },
     output: {
-        filename: `${settings.paths.assets.js}/[name].[hash].js`,
-        path: path.resolve(__dirname, settings.paths.dist)
+        filename: `${settings.paths.dist.js}/[name].[hash].js`,
     },
     optimization: {
         splitChunks: {

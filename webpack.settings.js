@@ -3,13 +3,22 @@ module.exports = {
         src: {
             base: './src',
             js: './src/js',
-            css: './src/styles'
+            css: './src/scss',
+            modules: './src/modules',
+            fonts: './src/fonts',
+            img: './src/img',
+            templates: './src/templates',
+            favicon: './src/favicon',
         },
-        assets: {
-            base: './assets',
-            js: './assets/js',
-            css: './assets/css'
+        dist: {
+            base: './dist',
+            js: './js',
+            css: './css',
+            modules: './modules',
+            fonts: './fonts',
+            img: './img',
+            templates: './templates',
+            favicon: './favicon',
         },
-        dist: './dist',
     }
 }

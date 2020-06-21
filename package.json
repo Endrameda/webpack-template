@@ -8,7 +8,7 @@
     "dev": "webpack --config webpack.dev.js",
     "start": "webpack-dev-server --hot --open --config webpack.dev.js",
     "eslint": "eslint \"src/js/**/*.js\" --fix",
-    "stylelint": "stylelint \"src/styles/**/*.scss\" --fix"
+    "stylelint": "stylelint \"src/scss/**/*.scss\" --fix"
   },
   "repository": {
     "type": "git",
@@ -40,12 +40,14 @@
     "copy-webpack-plugin": "^6.0.2",
     "css-loader": "^3.6.0",
     "csv-loader": "^3.0.3",
+    "ejs-compiled-loader": "^3.0.0",
     "eslint": "^7.2.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-loader": "^4.0.2",
     "eslint-plugin-prettier": "^3.1.4",
     "file-loader": "^6.0.0",
     "html-webpack-plugin": "^4.3.0",
+    "image-webpack-loader": "^6.0.0",
     "mini-css-extract-plugin": "^0.9.0",
     "node-sass": "^4.14.1",
     "node-sass-glob-importer": "^5.3.2",
@@ -53,8 +55,8 @@
     "papaparse": "^5.2.0",
     "postcss-loader": "^3.0.0",
     "prettier": "2.0.5",
+    "resolve-url-loader": "^3.1.1",
     "sass-loader": "^8.0.2",
-    "style-loader": "^1.2.1",
     "stylelint": "^13.6.1",
     "stylelint-config-prettier": "^8.0.1",
     "stylelint-prettier": "^1.1.2",
@@ -68,6 +70,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.10.1",
+    "core-js": "^3.6.5",
     "jquery": "^3.5.1",
     "normalize.css": "^8.0.1"
   }
