@@ -28,6 +28,23 @@ const generateHtml = (templateDir) => {
     })
 }
 
+const generateHtmlProd = (templateDir) => {
+    const templateFiles = fs.readdirSync(path.resolve(__dirname, templateDir));
+    return templateFiles.map(items => {
+        const parts = items.split('.');
+        const name = parts[0];
+        const extension = parts[1];
+        return new HTMLWebpackPlugin({
+            filename: `${name}.html`,
+            template: `${templateDir}/${name}.${extension}`,
+            minify: {
+                collapseWhitespace: true,
+                removeComments: true,
+            }
+        })
+    })
+}
+
 const styleLoaderConfig = () => {
     return {
         test: /\.s[ac]ss$/,
@@ -130,6 +147,21 @@ const jsLoaderConfig = () => {
     }
 }
 
+const ejsLoaderConfig = () => {
+    return {
+        test: /\.ejs$/,
+        use: {
+            loader: 'ejs-compiled-loader',
+            options: {
+                htmlmin: true,
+                htmlminOptions: {
+                    removeComments: true
+                }
+            }
+        }
+    }
+}
+
 // the base Webpack config
 const baseConfig = {
     entry: {
@@ -163,6 +195,7 @@ const baseConfig = {
             imageLoaderConfig(),
             fontsLoaderConfig(),
             jsLoaderConfig(),
+            ejsLoaderConfig(),
             {
                 test: /\.xml$/,
                 use: [
@@ -185,10 +218,7 @@ const devConfig = {
         new MiniCssExtractPlugin({
             filename: `${settings.paths.dist.css}/[name].css`,
         }),
-        new HTMLWebpackPlugin({
-            template: './src/index.html',
-        }),
-    ]
+    ].concat(generateHtml('./src/templates/views'))
 }
 
 // production Webpack config
@@ -196,15 +226,8 @@ const buildConfig = {
     plugins: [
         new MiniCssExtractPlugin({
             filename: `${settings.paths.dist.css}/[name].[hash].css`,
-        }),
-        new HTMLWebpackPlugin({
-            template: './src/index.html',
-            minify: {
-                collapseWhitespace: true,
-                removeComments: true,
-            }
-        }),
-    ]
+        })
+    ].concat(generateHtmlProd('./src/templates/views')),
 }
 
 module.exports = {

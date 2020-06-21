@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack --config webpack.build.js",
     "dev": "webpack --config webpack.dev.js",
-    "start": "webpack-dev-server --hot --open --config webpack.dev.js",
+    "start": "webpack-dev-server --hot --open --config webpack.dev.js --watch",
     "eslint": "eslint \"src/js/**/*.js\" --fix",
     "stylelint": "stylelint \"src/scss/**/*.scss\" --fix"
   },

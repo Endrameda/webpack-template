@@ -10,7 +10,7 @@
 @import './base/**.scss';
 
 // components
-@import './components/**.*';
+@import './components/**.scss';
 
 body {
     margin: 0;
@@ -24,6 +24,7 @@ body {
     padding-left: 10px;
     padding-right: 10px;
     margin: 0 auto;
+    text-align: center;
 
     @media all and (max-width: 960px) {
         display: none;

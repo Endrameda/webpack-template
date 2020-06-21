@@ -10,6 +10,10 @@ const CommonWebpackConfig = require('./webpack.common');
 
 module.exports = MergeWebpack(CommonWebpackConfig.devConfig, {
     mode: 'development',
+    watchOptions: {
+        aggregateTimeout: 200,
+        poll: 1000
+    },
     output: {
         filename: `${settings.paths.dist.js}/[name].js`,
     },
