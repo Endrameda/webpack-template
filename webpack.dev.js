@@ -19,7 +19,8 @@ module.exports = MergeWebpack(CommonWebpackConfig.devConfig, {
     devServer: {
         port: 4000,
         overlay: true,
-        hot: true
+        hot: true,
+        clientLogLevel: 'silent'
     },
     devtool: 'source-map',
 })
