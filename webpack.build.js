@@ -11,7 +11,6 @@ const settings = require('./webpack.settings');
 const CommonWebpackConfig = require('./webpack.common');
 
 module.exports = MergeWebpack(CommonWebpackConfig.buildConfig, {
-    mode: 'production',
     output: {
         filename: `${settings.paths.dist.js}/[name].[hash].js`,
     },

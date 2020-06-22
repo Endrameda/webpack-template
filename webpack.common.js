@@ -11,6 +11,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const NodeSassGlobImporter = require('node-sass-glob-importer');
 const StyleLintWebpackPlugin = require('stylelint-webpack-plugin');
 const MergeWebpack = require('webpack-merge');
+const ImageMinWebpackPlugin = require('imagemin-webpack-plugin').default;
 
 // settings
 const settings = require('./webpack.settings');
@@ -153,7 +154,6 @@ const ejsLoaderConfig = () => {
         use: {
             loader: 'ejs-compiled-loader',
             options: {
-                htmlmin: true,
                 htmlminOptions: {
                     removeComments: true
                 }
@@ -172,13 +172,18 @@ const baseConfig = {
         new CopyWebpackPlugin({
             patterns: [
                 {
-                    context: path.resolve(__dirname, 'src'),
+                    context: path.resolve(__dirname, settings.paths.src.base),
                     from: 'favicon/**/*.*',
                     to: '[path][name].[ext]',
                 },
                 {
-                    context: path.resolve(__dirname, 'src'),
+                    context: path.resolve(__dirname, settings.paths.src.base),
                     from: 'modules/**/*.*',
+                    to: '[path][name].[ext]'
+                },
+                {
+                    context: path.resolve(__dirname, settings.paths.src.base),
+                    from: 'img/**/*.*',
                     to: '[path][name].[ext]'
                 }
             ],
@@ -191,11 +196,11 @@ const baseConfig = {
     ],
     module: {
         rules: [
+            ejsLoaderConfig(),
             styleLoaderConfig(),
             imageLoaderConfig(),
             fontsLoaderConfig(),
             jsLoaderConfig(),
-            ejsLoaderConfig(),
             {
                 test: /\.xml$/,
                 use: [
@@ -226,6 +231,25 @@ const buildConfig = {
     plugins: [
         new MiniCssExtractPlugin({
             filename: `${settings.paths.dist.css}/[name].[hash].css`,
+        }),
+        new ImageMinWebpackPlugin({
+            mozjpeg: {
+                progressive: true,
+                quality: 65
+            },
+            optipng: {
+                enabled: false,
+            },
+            pngquant: {
+                quality: '65-90',
+                speed: 4,
+            },
+            gifsicle: {
+                optimizationLevel: 2,
+            },
+            webp: {
+                quality: 75
+            }
         })
     ].concat(generateHtmlProd('./src/templates/views')),
 }
