@@ -185,6 +185,11 @@ const baseConfig = {
                     context: path.resolve(__dirname, settings.paths.src.base),
                     from: 'img/**/*.*',
                     to: '[path][name].[ext]'
+                },
+                {
+                    context: path.resolve(__dirname, settings.paths.src.base),
+                    from: 'upload/**/*.*',
+                    to: '[path][name].[ext]'
                 }
             ],
         }),
