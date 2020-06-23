@@ -235,7 +235,7 @@ const devConfig = {
 const buildConfig = {
     plugins: [
         new MiniCssExtractPlugin({
-            filename: `${settings.paths.dist.css}/[name].[hash].css`,
+            filename: `${settings.paths.dist.css}/[name].min.css`,
         }),
         new ImageMinWebpackPlugin({
             mozjpeg: {

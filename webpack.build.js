@@ -12,7 +12,7 @@ const CommonWebpackConfig = require('./webpack.common');
 
 module.exports = MergeWebpack(CommonWebpackConfig.buildConfig, {
     output: {
-        filename: `${settings.paths.dist.js}/[name].[hash].js`,
+        filename: `${settings.paths.dist.js}/[name].min.js`,
     },
     optimization: {
         splitChunks: {
