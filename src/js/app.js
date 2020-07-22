@@ -1,9 +1,3 @@
-async function promiseFunc() {
-    return await Promise.resolve('async is working');
-}
+'use stict';
 
-promiseFunc().then(console.log);
-
-$('.container').addClass('asd');
-
-console.log('Test Webpack Clean plugin');
+import './polyfills/main';
