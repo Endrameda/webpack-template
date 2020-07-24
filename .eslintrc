@@ -1,9 +1,5 @@
 {
-  "root": true,
   "parser": "babel-eslint",
-  "rules": {
-    "no-unused-vars": "warn"
-  },
   "env": {
     "es6": true,
     "browser": true,
@@ -11,7 +7,18 @@
     "node": true,
     "jquery": true
   },
-  "extends": [
-    "plugin:prettier/recommended"
-  ]
+  "rules": {
+    "semi": "off",
+    "indent": ["error", 4],
+    "new-cap": "off",
+    "require-jsdoc": "off",
+    "no-unused-vars": "off",
+    "arrow-parens": "off",
+    "operator-linebreak": "off",
+    "no-debugger": "off",
+    "space-before-function-paren": "off",
+    "no-invalid-this": "off",
+    "no-undef": "off"
+  },
+  "extends": ["eslint:recommended", "google"]
 }

@@ -9,7 +9,6 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const NodeSassGlobImporter = require('node-sass-glob-importer');
-const StyleLintWebpackPlugin = require('stylelint-webpack-plugin');
 const MergeWebpack = require('webpack-merge');
 const ImageMinWebpackPlugin = require('imagemin-webpack-plugin').default;
 
@@ -193,7 +192,6 @@ const baseConfig = {
                 }
             ],
         }),
-        new StyleLintWebpackPlugin(),
         new webpack.ProvidePlugin({
             $: 'jquery',
             jQuery: 'jquery'
