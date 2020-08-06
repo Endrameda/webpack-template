@@ -14,6 +14,7 @@ const ImageMinWebpackPlugin = require('imagemin-webpack-plugin').default;
 
 // settings
 const settings = require('./webpack.settings');
+const data = require('./src/data/data.json')
 
 const generateHtml = (templateDir) => {
     const templateFiles = fs.readdirSync(path.resolve(__dirname, templateDir));
@@ -23,7 +24,10 @@ const generateHtml = (templateDir) => {
         const extension = parts[1];
         return new HTMLWebpackPlugin({
             filename: `${name}.html`,
-            template: `${templateDir}/${name}.${extension}`
+            template: `${templateDir}/${name}.${extension}`,
+            templateParameters: {
+                myData: data
+            }
         })
     })
 }
