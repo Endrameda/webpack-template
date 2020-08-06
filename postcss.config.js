@@ -1,6 +1,8 @@
 module.exports = {
     plugins: {
-        'autoprefixer': {},
+        'autoprefixer': {
+            grid: 'autoplace'
+        },
         '@lipemat/css-mqpacker': {},
         'postcss-pxtorem': {
             rootValue: 16,
