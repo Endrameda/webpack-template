@@ -75,7 +75,10 @@ const styleLoaderConfig = () => {
                 }
             },
             {
-                loader: "resolve-url-loader"
+                loader: "resolve-url-loader",
+                options: {
+                    removeCR: true
+                }
             },
             {
                 loader: 'sass-loader',

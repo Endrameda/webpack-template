@@ -18,7 +18,8 @@
     "no-debugger": "off",
     "space-before-function-paren": "off",
     "no-invalid-this": "off",
-    "no-undef": "off"
+    "no-undef": "off",
+    "linebreak-style": "off"
   },
   "extends": ["eslint:recommended", "google"]
 }
